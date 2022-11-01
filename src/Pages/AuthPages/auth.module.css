@@ -1,0 +1,34 @@
+.auth {
+    max-width: 400px;
+    width: 90%;
+    margin: 10px auto;
+}
+
+.auth__header h1 {
+    font-size: 24px;
+}
+
+.auth__header p {
+    font-size: 14px;
+    color: var(--color-text-fade);
+    margin-top: 10px;
+}
+
+.auth__form {
+    margin-top: 30px;
+}
+
+.auth__footer {
+    margin: 20px 0;
+    font-weight: 400px;
+    text-align: center;
+}
+
+.auth__footer a {
+    font-weight: 600;
+    color: var(--button-color);
+}
+
+.auth__footer a:hover {
+    color: var(--button-hover-color);
+}

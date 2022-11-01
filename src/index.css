@@ -1,5 +1,93 @@
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800;900;1000&family=Open+Sans:wght@300;400;500;600;700;800&family=Poppins:wght@200;300;400;500;600;700;800;900&display=swap");
+
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Nunito", sans-serif;
+}
+
+html {
+    --hue: 0;
+    /* Text color */
+    --color-text: hsl(var(--hue), 0%, 0%);
+    --color-text-fade: hsl(var(--hue), 0%, 34%);
+    --color-text-input: hsl(var(--hue), 0%, 20%);
+    --color-text-button: hsl(var(--hue), 0%, 100%);
+    --color-text-error: hsl(var(--hue), 100%, 60%);
+
+    /* Border-color */
+    --border-color: hsl(var(--hue), 0%, 100%);
+
+    /* Input background-color */
+    --input-bg-color: hsl(210, 20%, 98%);
+    --input-outline-color: hsl(var(--hue), 0%, 90%);
+
+    /* nav and footer color */
+    --nav-footer-bg-color: hsl(var(--hue), 0%, 96%);
+    --gradient-light-color: hsl(var(--hue), 0%, 40%);
+    --gradient-dark-color: hsl(var(--hue), 0%, 25%);
+    --nav-links-bg-color: hsl(var(--hue), 0%, 85%);
+    --nav-links-bg-hover-color: hsl(var(--hue), 0%, 96%);
+
+    /* Button color */
+    --hue-btn: 224;
+    --button-color: hsl(var(--hue-btn), 64%, 33%);
+    --button-hover-color: hsl(var(--hue-btn), 64%, 30%);
+
+    /* Body */
+    --body-bg-color: hsl(var(--hue), 0%, 100%);
+}
+
+.dark-theme {
+    --hue: 0;
+    /* Text color */
+    --text-color: hsl(var(--hue), 0%, 97%);
+    --color-text: var(--text-color);
+    --color-text-fade: var(--text-color);
+    --color-text-input: var(--text-color);
+    --color-text-button: var(--text-color);
+    --color-text-error: hsl(var(--hue), 100%, 60%);
+
+    /* Border-color */
+    --border-color: hsl(var(--hue), 0%, 20%);
+
+    /* Input background-color */
+    --input-bg-color: hsl(var(--hue), 0%, 11%);
+    --input-outline-color: hsl(var(--hue), 0%, 35%);
+
+    /* nav and footer color */
+    --nav-footer-bg-color: hsl(var(--hue), 0%, 7%);
+    --gradient-light-color: hsl(var(--hue), 0%, 100%);
+    --gradient-dark-color: hsl(var(--hue), 0%, 65%);
+    --nav-links-bg-color: hsl(var(--hue), 0%, 10%);
+    --nav-links-bg-hover-color: hsl(var(--hue), 0%, 12%);
+
+    /* Button color */
+    --hue-btn: 259;
+    --button-color: hsl(var(--hue-btn), 92%, 61%);
+    --button-hover-color: hsl(var(--hue-btn), 92%, 60%);
+
+    /* Body */
+    --body-bg-color: hsl(var(--hue), 0%, 6%);
+}
+
+body {
+    background-color: var(--body-bg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+label {
+    color: var(--color-text);
+}
+
+a {
+    text-decoration: none;
+    color: var(--color-text);
 }

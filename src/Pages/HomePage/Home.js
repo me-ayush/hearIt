@@ -1,9 +1,11 @@
-import React from 'react'
+import { useRef } from "react";
 
 const Home = () => {
-  return (
-    <div>Home</div>
-  )
-}
+    return (
+        <div style={{ textAlign: "center" }}>
+            <p>Work in Progress...</p>
+        </div>
+    );
+};
 
-export default Home
+export default Home;
