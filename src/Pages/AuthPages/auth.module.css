@@ -24,6 +24,10 @@
     text-align: center;
 }
 
+.auth__footer p {
+    margin: 10px;
+}
+
 .auth__footer a {
     font-weight: 600;
     color: var(--button-color);
