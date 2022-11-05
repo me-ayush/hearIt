@@ -5,12 +5,14 @@ import Login from "./Pages/AuthPages/Login";
 import Home from "./Pages/HomePage/Home";
 import PrivateRoute from "./Utils/PrivateRoute";
 import ForgotPassword from "./Pages/AuthPages/ForgotPassword";
+import Landing from "./Pages/LandingPage/Landing";
 
 const Router = () => {
     return (
         <Routes>
+            <Route path="/" element={<Landing />} />
             <Route element={<PrivateRoute />}>
-                <Route path="/" element={<Home />} />
+                <Route path="/home" element={<Home />} />
             </Route>
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
