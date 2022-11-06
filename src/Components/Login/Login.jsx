@@ -5,6 +5,7 @@ import SubmitButton from "./../Button/SubmitButton";
 import Error from "./../Error/Error";
 import { login } from "../../Services/authService";
 import { Link, useNavigate } from "react-router-dom";
+import { Preloader } from '../PreLoader/preloader'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -52,7 +53,7 @@ const Login = () => {
 
     };
 
-    if (loading) return <p>Loading...</p>;
+    if (loading) return <Preloader />;
 
     return (
         <div>
@@ -77,7 +78,7 @@ const Login = () => {
                 {error ? <Error message={error} /> : null}
                 <SubmitButton type="submit" text="Login" />
             </Form>
-            <ToastContainer/>
+            <ToastContainer />
 
         </div>
     );
