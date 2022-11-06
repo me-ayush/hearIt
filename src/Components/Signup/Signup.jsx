@@ -5,6 +5,7 @@ import SubmitButton from "./../Button/SubmitButton";
 import Error from "./../Error/Error";
 import { signup } from "../../Services/authService";
 import { useNavigate } from "react-router-dom";
+import { Preloader } from '../PreLoader/preloader'
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -48,6 +49,8 @@ const Signup = () => {
         };
         if (response.data) return navigate("/login");
     };
+
+    if (loading) return <Preloader />
 
     return (
         <div>
