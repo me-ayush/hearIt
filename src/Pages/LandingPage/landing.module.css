@@ -39,6 +39,12 @@
     border: var(--border-color);
 }
 
+.welcome a:hover {
+    color: var(--color-text-button);
+    background-color: var(--button-hover-color);
+    font-weight: bold;
+}
+
 @media (max-width: 768px) {
     .welcome {
         display: block;
@@ -55,7 +61,7 @@
         margin-left: 0px;
     }
 
-    .welcome__content p{
+    .welcome__content p {
         margin-bottom: 25px;
     }
 }

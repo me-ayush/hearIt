@@ -25,6 +25,7 @@ html {
 
     /* nav and footer color */
     --nav-footer-bg-color: hsl(var(--hue), 0%, 96%);
+    --nav-footer-border-color: hsl(var(--hue), 0%, 20%);
     --gradient-light-color: hsl(var(--hue), 0%, 40%);
     --gradient-dark-color: hsl(var(--hue), 0%, 25%);
     --nav-links-bg-color: hsl(var(--hue), 0%, 85%);
@@ -33,7 +34,7 @@ html {
     /* Button color */
     --hue-btn: 224;
     --button-color: hsl(var(--hue-btn), 64%, 33%);
-    --button-hover-color: hsl(var(--hue-btn), 64%, 30%);
+    --button-hover-color: hsl(var(--hue-btn), 75%, 30%);
 
     /* Body */
     --body-bg-color: hsl(var(--hue), 0%, 100%);
@@ -58,6 +59,7 @@ html {
 
     /* nav and footer color */
     --nav-footer-bg-color: hsl(var(--hue), 0%, 7%);
+    --nav-footer-border-color: hsl(var(--hue), 0%, 100%);
     --gradient-light-color: hsl(var(--hue), 0%, 100%);
     --gradient-dark-color: hsl(var(--hue), 0%, 65%);
     --nav-links-bg-color: hsl(var(--hue), 0%, 10%);

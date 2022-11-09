@@ -11,6 +11,7 @@ function App() {
             document.body.classList.add("dark-theme");
         }
     }, []);
+    
     return (
         <div>
             <Navbar />

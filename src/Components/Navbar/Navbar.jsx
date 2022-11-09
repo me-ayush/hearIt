@@ -41,7 +41,7 @@ const Navbar = () => {
         <>
             <nav id="nav">
                 <div className={styles.logo}>
-                    <Link to="/" className={styles.logo_container}>
+                    <Link to="/login" className={styles.logo_container}>
                         <h1>hearIt</h1>
                     </Link>
                     <div className={styles.buttons} onClick={handleNav}>
