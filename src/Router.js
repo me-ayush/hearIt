@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import Missing from "./Pages/MissingPage/Missing";
 import Signup from "./Pages/AuthPages/Signup";
 import Login from "./Pages/AuthPages/Login";

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import Router from "./Router";
 import Navbar from "./Components/Navbar/Navbar";
+import Footer from "./Components/Footer/Footer";
 import { getItem } from "./Utils/LocalStorage";
 import { THEME } from "./Constants";
 
@@ -14,6 +15,7 @@ function App() {
         <div>
             <Navbar />
             <Router />
+            <Footer />
         </div>
     );
 }
