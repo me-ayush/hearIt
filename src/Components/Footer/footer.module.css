@@ -8,6 +8,7 @@ footer {
     height: auto;
     padding: 10px 20px;
     background-color: var(--body-bg-color);
+    transition: background  var(--theme-toggle-time);
 }
 
 .main_footer .container {
