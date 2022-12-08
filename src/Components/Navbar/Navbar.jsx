@@ -13,24 +13,27 @@ const Navbar = () => {
     const handleNav = () => setOpenNav(!openNav);
     const [auth, setAuth] = useState("");
     const [dark, setDark] = useState(getItem(THEME));
-    console.log(dark);
 
     const handleLogout = () => {
         logout();
         window.location.reload();
     };
 
-    const removeTheme = () => {
+    function removeTheme() {
         clearItem(THEME);
         document.body.classList.remove("dark-theme");
-        window.location.reload();
+        setDark(false)
     };
 
-    const addTheme = () => {
+    function addTheme() {
         document.body.classList.add("dark-theme");
         setItem(THEME, true);
-        window.location.reload();
+        setDark(true)
     };
+
+    const toggleTheme = () => {
+        !dark ? addTheme() : removeTheme()
+    }
 
     const location = useLocation();
     useEffect(() => {
@@ -58,11 +61,13 @@ const Navbar = () => {
                             <>
                                 <Link to="/login">Login</Link>
                                 <Link to="/signup">Signup</Link>
-                                <Link>
+                                <Link onClick={toggleTheme}>
                                     {!dark ? (
-                                        <BsFillMoonFill onClick={addTheme} />
+                                        <div>
+                                            <BsFillMoonFill />
+                                        </div>
                                     ) : (
-                                        <BsFillSunFill onClick={removeTheme} />
+                                        <BsFillSunFill  />
                                     )}
                                 </Link>
                             </>
@@ -70,11 +75,11 @@ const Navbar = () => {
                             <>
                                 <Link to="/">Home</Link>
                                 <Link to="/settings">About Us</Link>
-                                <Link>
+                                <Link onClick={toggleTheme}>
                                     {!dark ? (
-                                        <BsFillMoonFill onClick={addTheme} />
+                                        <BsFillMoonFill/>
                                     ) : (
-                                        <BsFillSunFill onClick={removeTheme} />
+                                        <BsFillSunFill />
                                     )}
                                 </Link>
                                 <Link onClick={handleLogout}>Logout</Link>
@@ -87,11 +92,11 @@ const Navbar = () => {
                         <>
                             <Link to="/login">Login</Link>
                             <Link to="/signup">Signup</Link>
-                            <Link>
+                            <Link onClick={toggleTheme}>
                                 {!dark ? (
-                                    <BsFillMoonFill onClick={addTheme} />
+                                    <BsFillMoonFill />
                                 ) : (
-                                    <BsFillSunFill onClick={removeTheme} />
+                                    <BsFillSunFill />
                                 )}
                             </Link>
                         </>
@@ -99,11 +104,11 @@ const Navbar = () => {
                         <>
                             <Link to="/">Home</Link>
                             <Link to="/settings">About Us</Link>
-                            <Link>
+                            <Link onClick={toggleTheme}>
                                 {!dark ? (
-                                    <BsFillMoonFill onClick={addTheme} />
+                                    <BsFillMoonFill/>
                                 ) : (
-                                    <BsFillSunFill onClick={removeTheme} />
+                                    <BsFillSunFill />
                                 )}
                             </Link>
                             <Link onClick={handleLogout}>Logout</Link>
