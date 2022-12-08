@@ -1,4 +1,4 @@
-export const URL = window.location.href.indexOf("hearit-backend") > -1 ? "https://hearit-backend.vercel.app" : "http://localhost:5000";
+export const URL = window.location.href.indexOf("hearit.vercel") > -1 ? "https://hearit-backend.vercel.app" : "http://localhost:5000";
 console.log("Location of backend: ", URL)
 export const endpoints = {
     auth: {
