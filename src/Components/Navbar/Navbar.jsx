@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../Services/authService";
 import { clearItem, getItem, setItem } from "../../Utils/LocalStorage";
 import { ACCESS_TOKEN, THEME } from "../../Constants";
@@ -13,9 +13,12 @@ const Navbar = () => {
     const handleNav = () => setOpenNav(!openNav);
     const [auth, setAuth] = useState("");
     const [dark, setDark] = useState(getItem(THEME));
+    
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         logout();
+        navigate("/login")
         window.location.reload();
     };
 
