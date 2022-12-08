@@ -45,11 +45,11 @@ const Login = () => {
             }, 2);
             return
         };
-
         toast.success("Login Successfully", {
-            autoClose: 5000,
-            onClose: () => { if (response.data.tokens) return navigate("/"); }
+            autoClose: 3000,
+            onClose: () => { }
         });
+        if (response.data.tokens) return navigate("/home");
 
     };
 

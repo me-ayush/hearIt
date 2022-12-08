@@ -44,7 +44,7 @@ const Navbar = () => {
         <>
             <nav id="nav">
                 <div className={styles.logo}>
-                    <Link to="/login" className={styles.logo_container}>
+                    <Link to="/" className={styles.logo_container}>
                         <h1>hearIt</h1>
                     </Link>
                     <div className={styles.buttons} onClick={handleNav}>
@@ -73,7 +73,7 @@ const Navbar = () => {
                             </>
                         ) : (
                             <>
-                                <Link to="/">Home</Link>
+                                <Link to="/home">Home</Link>
                                 <Link to="/settings">About Us</Link>
                                 <Link onClick={toggleTheme}>
                                     {!dark ? (
@@ -102,7 +102,7 @@ const Navbar = () => {
                         </>
                     ) : (
                         <>
-                            <Link to="/">Home</Link>
+                            <Link to="/home">Home</Link>
                             <Link to="/settings">About Us</Link>
                             <Link onClick={toggleTheme}>
                                 {!dark ? (
