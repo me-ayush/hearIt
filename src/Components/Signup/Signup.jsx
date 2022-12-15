@@ -1,14 +1,15 @@
 import { useState } from "react";
 import FormInput from "../InputField/FormInput";
 import Form from "./../Form/Form";
+import ReCAPTCHA from "react-google-recaptcha";
 import SubmitButton from "./../Button/SubmitButton";
 import Error from "./../Error/Error";
 import { signup } from "../../Services/authService";
 import { useNavigate } from "react-router-dom";
-import { Preloader } from '../PreLoader/preloader'
+import { Preloader } from "../PreLoader/preloader";
 
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Signup = () => {
     const [name, setName] = useState("");
@@ -18,8 +19,13 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [verified, setVerified] = useState(false);
 
     const navigate = useNavigate();
+
+    const handleCaptcha = () => {
+        setVerified(true);
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -45,12 +51,12 @@ const Signup = () => {
                     theme: "colored",
                 });
             }, 2);
-            return
-        };
+            return;
+        }
         if (response.data) return navigate("/login");
     };
 
-    if (loading) return <Preloader />
+    if (loading) return <Preloader />;
 
     return (
         <div>
@@ -96,7 +102,15 @@ const Signup = () => {
                     changeHandler={setConfirmPassword}
                 />
                 {error ? <Error message="password not valid" /> : null}
-                <SubmitButton type="submit" text="Signup" />
+                <ReCAPTCHA
+                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                    onChange={handleCaptcha}
+                />
+                <SubmitButton
+                    type="submit"
+                    text="Signup"
+                    disabled={!verified}
+                />
             </Form>
 
             <ToastContainer />

@@ -5,23 +5,26 @@ import SubmitButton from "./../Button/SubmitButton";
 import Error from "./../Error/Error";
 import { login } from "../../Services/authService";
 import { Link, useNavigate } from "react-router-dom";
-import { Preloader } from '../PreLoader/preloader'
-
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-
+import { Preloader } from "../PreLoader/preloader";
+import ReCAPTCHA from "react-google-recaptcha";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Login = () => {
-
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
+    const [verified, setVerified] = useState(false);
 
+    console.log(process.env);
     const navigate = useNavigate();
 
-    const submitHandler = async (e) => {
+    const handleCaptcha = () => {
+        setVerified(true);
+    };
 
+    const submitHandler = async (e) => {
         e.preventDefault();
         const data = {
             email,
@@ -43,21 +46,21 @@ const Login = () => {
                     theme: "colored",
                 });
             }, 2);
-            return
-        };
+            return;
+        }
 
         toast.success("Login Successfully", {
             autoClose: 5000,
-            onClose: () => { if (response.data.tokens) return navigate("/"); }
+            onClose: () => {
+                if (response.data.tokens) return navigate("/");
+            },
         });
-
     };
 
     if (loading) return <Preloader />;
 
     return (
         <div>
-
             <Form submitHandler={submitHandler}>
                 <FormInput
                     id="email"
@@ -76,10 +79,13 @@ const Login = () => {
                     changeHandler={setPassword}
                 />
                 {error ? <Error message={error} /> : null}
-                <SubmitButton type="submit" text="Login" />
+                <ReCAPTCHA
+                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                    onChange={handleCaptcha}
+                />
+                <SubmitButton type="submit" text="Login" disabled={!verified} />
             </Form>
             <ToastContainer />
-
         </div>
     );
 };

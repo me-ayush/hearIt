@@ -3,6 +3,7 @@ import LoginForm from "../../Components/Login/Login";
 import styles from "./auth.module.css";
 
 const Login = () => {
+
     return (
         <main className={styles.auth}>
             <div className={styles.auth__header}>
