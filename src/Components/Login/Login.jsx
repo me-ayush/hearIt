@@ -78,10 +78,12 @@ const Login = () => {
                     changeHandler={setPassword}
                 />
                 {error ? <Error message={error} /> : null}
-                <ReCAPTCHA
-                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                    onChange={handleCaptcha}
-                />
+                <div className="container">
+                    <ReCAPTCHA
+                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        onChange={handleCaptcha}
+                    />
+                </div>
                 <SubmitButton type="submit" text="Login" disabled={!verified} />
             </Form>
             <ToastContainer />

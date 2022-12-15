@@ -97,3 +97,9 @@ a {
     text-decoration: none;
     color: var(--color-text);
 }
+
+.container {
+    text-align: center;
+    width: 80%;
+    margin: 10px auto;
+}
