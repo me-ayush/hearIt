@@ -17,20 +17,24 @@ const PasswordForm = () => {
         setVerified(true);
     };
 
-    useEffect(() => {
-        const sendEmail = async (email) => {
-            await axios.post(URL + endpoints.auth.forgotPassword, { email });
-            setMessage("Please check your Email");
-        };
-        sendEmail();
-    }, []);
+    const sendEmail = async (e, email) => {
+        e.preventDefault();
+        const response = await axios.post(URL + endpoints.auth.forgotPassword, {
+            email,
+        });
+        if (response.data.success) {
+            setMessage(response.data.message);
+        } else {
+            setMessage(response.data.error);
+        }
+    };
 
     return message.length > 0 ? (
         <div className={styles.message}>
             <p>{message}</p>
         </div>
     ) : (
-        <Form>
+        <Form submitHandler={sendEmail}>
             <FormInput
                 id="forgot-password"
                 text="email"

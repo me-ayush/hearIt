@@ -13,9 +13,9 @@ const AuthenticateUser = () => {
         const response = await axios.post(URL + endpoints.auth.verify, {
             token,
         });
-        if (response.data.success) {
+        if (response.data.userActivated) {
             navigate("/login");
-        } else if (!response.data.success) {
+        } else if (!response.data.userActivated) {
             <Error message={response.data.error} />;
         }
     };
