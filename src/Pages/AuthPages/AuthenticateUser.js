@@ -3,6 +3,7 @@ import Error from "../../Components/Error/Error";
 import { useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { URL, endpoints } from "./../../Constants/index";
+import styles from "./auth.module.css";
 
 const AuthenticateUser = () => {
     const { token } = useParams();
@@ -24,7 +25,7 @@ const AuthenticateUser = () => {
     }, []);
 
     return (
-        <div>
+        <div className={styles.message}>
             <h1>Verifying your account. Please Wait...</h1>
         </div>
     );
