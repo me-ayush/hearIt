@@ -38,6 +38,7 @@ const Signup = () => {
         setLoading(true);
         const response = await signup(data);
         setLoading(false);
+        setVerified(false);
         if (!response.status) {
             setTimeout(() => {
                 toast.error(response.error, {
@@ -101,7 +102,7 @@ const Signup = () => {
                     value={confirmPassword}
                     changeHandler={setConfirmPassword}
                 />
-                {error ? <Error message="password not valid" /> : null}
+                {error ? window.location.reload() : null}
                 <div className="container">
                     <ReCAPTCHA
                         sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
@@ -114,7 +115,6 @@ const Signup = () => {
                     disabled={!verified}
                 />
             </Form>
-
             <ToastContainer />
         </div>
     );
