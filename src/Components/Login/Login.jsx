@@ -46,15 +46,14 @@ const Login = () => {
                     theme: "colored",
                 });
             }, 2);
-            return;
-        }
+            return
+        };
 
         toast.success("Login Successfully", {
             autoClose: 5000,
-            onClose: () => {
-                if (response.data.tokens) return navigate("/");
-            },
+            onClose: () => { if (response.data.tokens) return navigate("/"); }
         });
+
     };
 
     if (loading) return <Preloader />;

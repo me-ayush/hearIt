@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { GiHamburgerMenu } from "react-icons/gi";
 import { MdClose } from "react-icons/md";
 import { BsFillSunFill, BsFillMoonFill } from "react-icons/bs";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { logout } from "../../Services/authService";
 import { clearItem, getItem, setItem } from "../../Utils/LocalStorage";
 import { ACCESS_TOKEN, THEME } from "../../Constants";
@@ -13,24 +13,30 @@ const Navbar = () => {
     const handleNav = () => setOpenNav(!openNav);
     const [auth, setAuth] = useState("");
     const [dark, setDark] = useState(getItem(THEME));
-    console.log(dark);
+    
+    const navigate = useNavigate();
 
     const handleLogout = () => {
         logout();
+        navigate("/login")
         window.location.reload();
     };
 
-    const removeTheme = () => {
+    function removeTheme() {
         clearItem(THEME);
         document.body.classList.remove("dark-theme");
-        window.location.reload();
+        setDark(false)
     };
 
-    const addTheme = () => {
+    function addTheme() {
         document.body.classList.add("dark-theme");
         setItem(THEME, true);
-        window.location.reload();
+        setDark(true)
     };
+
+    const toggleTheme = () => {
+        !dark ? addTheme() : removeTheme()
+    }
 
     const location = useLocation();
     useEffect(() => {
@@ -41,7 +47,7 @@ const Navbar = () => {
         <>
             <nav id="nav">
                 <div className={styles.logo}>
-                    <Link to="/login" className={styles.logo_container}>
+                    <Link to="/" className={styles.logo_container}>
                         <h1>hearIt</h1>
                     </Link>
                     <div className={styles.buttons} onClick={handleNav}>
@@ -58,23 +64,25 @@ const Navbar = () => {
                             <>
                                 <Link to="/login">Login</Link>
                                 <Link to="/signup">Signup</Link>
-                                <Link>
+                                <Link onClick={toggleTheme}>
                                     {!dark ? (
-                                        <BsFillMoonFill onClick={addTheme} />
+                                        <div>
+                                            <BsFillMoonFill />
+                                        </div>
                                     ) : (
-                                        <BsFillSunFill onClick={removeTheme} />
+                                        <BsFillSunFill  />
                                     )}
                                 </Link>
                             </>
                         ) : (
                             <>
-                                <Link to="/">Home</Link>
+                                <Link to="/home">Home</Link>
                                 <Link to="/settings">About Us</Link>
-                                <Link>
+                                <Link onClick={toggleTheme}>
                                     {!dark ? (
-                                        <BsFillMoonFill onClick={addTheme} />
+                                        <BsFillMoonFill/>
                                     ) : (
-                                        <BsFillSunFill onClick={removeTheme} />
+                                        <BsFillSunFill />
                                     )}
                                 </Link>
                                 <Link onClick={handleLogout}>Logout</Link>
@@ -87,23 +95,23 @@ const Navbar = () => {
                         <>
                             <Link to="/login">Login</Link>
                             <Link to="/signup">Signup</Link>
-                            <Link>
+                            <Link onClick={toggleTheme}>
                                 {!dark ? (
-                                    <BsFillMoonFill onClick={addTheme} />
+                                    <BsFillMoonFill />
                                 ) : (
-                                    <BsFillSunFill onClick={removeTheme} />
+                                    <BsFillSunFill />
                                 )}
                             </Link>
                         </>
                     ) : (
                         <>
-                            <Link to="/">Home</Link>
+                            <Link to="/home">Home</Link>
                             <Link to="/settings">About Us</Link>
-                            <Link>
+                            <Link onClick={toggleTheme}>
                                 {!dark ? (
-                                    <BsFillMoonFill onClick={addTheme} />
+                                    <BsFillMoonFill/>
                                 ) : (
-                                    <BsFillSunFill onClick={removeTheme} />
+                                    <BsFillSunFill />
                                 )}
                             </Link>
                             <Link onClick={handleLogout}>Logout</Link>

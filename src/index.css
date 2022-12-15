@@ -38,6 +38,9 @@ html {
 
     /* Body */
     --body-bg-color: hsl(var(--hue), 0%, 100%);
+
+    /* theme toggle transition time */
+    --theme-toggle-time: 500ms;
 }
 
 .dark-theme {
@@ -76,6 +79,7 @@ html {
 
 body {
     background-color: var(--body-bg-color);
+    transition: background var(--theme-toggle-time);
 }
 
 h1,

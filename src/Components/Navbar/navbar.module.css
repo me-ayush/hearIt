@@ -2,6 +2,8 @@ nav {
     border-bottom: 2px solid var(--border-color);
     padding: 20px;
     background-color: var(--nav-footer-bg-color);
+    transition: border-color  var(--theme-toggle-time);
+    transition: background  var(--theme-toggle-time);
     position: fixed;
     top: 0;
     left: 0;
@@ -52,6 +54,7 @@ nav {
     border: 1px solid var(--border-color);
     border-radius: 10px;
     background-color: var(--nav-links-bg-color);
+    transition: background  var(--theme-toggle-time);
 }
 
 .links_res a:active {
@@ -87,8 +90,9 @@ nav {
         font-weight: 600;
         padding: 15px;
         color: var(--color-text);
-        border: 1px solid var(--border-color);
+        border: 1px solid transparent;
         border-radius: 10px;
+        margin: 1.5px;
         background-color: var(--nav-links-bg-color);
     }
 
@@ -99,4 +103,7 @@ nav {
     .buttons {
         display: none;
     }
+}
+html{
+    --size : 18px: 
 }
