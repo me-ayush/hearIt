@@ -17,7 +17,6 @@ const Login = () => {
     const [error, setError] = useState("");
     const [verified, setVerified] = useState(false);
 
-    console.log(process.env);
     const navigate = useNavigate();
 
     const handleCaptcha = () => {
@@ -34,6 +33,7 @@ const Login = () => {
         const response = await login(data);
         setLoading(false);
         if (response.status === false) {
+            setVerified(false);
             setTimeout(() => {
                 toast.error(response.error, {
                     position: "top-center",
