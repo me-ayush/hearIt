@@ -18,7 +18,7 @@ const PasswordForm = () => {
         setVerified(true);
     };
 
-    const sendEmail = async (e, email) => {
+    const sendEmail = async (e) => {
         e.preventDefault();
         const response = await axios.post(URL + endpoints.auth.forgotPassword, {
             email,
