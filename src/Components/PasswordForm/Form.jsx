@@ -22,6 +22,7 @@ const PasswordForm = () => {
         const response = await axios.post(URL + endpoints.auth.forgotPassword, {
             email,
         });
+        console.log(response);
         if (response.data.success) {
             setMessage(response.data.message);
         } else {
