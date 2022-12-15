@@ -1,0 +1,6 @@
+.message {
+    text-align: center;
+    margin-top: 20px;
+    font-weight: 600;
+    color: var(--button-color);
+}
