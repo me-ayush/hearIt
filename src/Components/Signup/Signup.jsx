@@ -102,10 +102,12 @@ const Signup = () => {
                     changeHandler={setConfirmPassword}
                 />
                 {error ? <Error message="password not valid" /> : null}
-                <ReCAPTCHA
-                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                    onChange={handleCaptcha}
-                />
+                <div className="container">
+                    <ReCAPTCHA
+                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                        onChange={handleCaptcha}
+                    />
+                </div>
                 <SubmitButton
                     type="submit"
                     text="Signup"

@@ -4,7 +4,6 @@ import FormInput from "../InputField/FormInput";
 import SubmitButton from "./../Button/SubmitButton";
 import ReCAPTCHA from "react-google-recaptcha";
 
-
 const PasswordForm = () => {
     const [email, setEmail] = useState("");
     const [verified, setVerified] = useState("");
@@ -23,10 +22,12 @@ const PasswordForm = () => {
                 value={email}
                 changeHandler={setEmail}
             />
-            <ReCAPTCHA
-                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                onChange={handleCaptcha}
-            />
+            <div className="container">
+                <ReCAPTCHA
+                    sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                    onChange={handleCaptcha}
+                />
+            </div>
             <SubmitButton
                 type="submit"
                 text="Reset password"

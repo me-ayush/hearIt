@@ -97,3 +97,15 @@ a {
     text-decoration: none;
     color: var(--color-text);
 }
+
+.container {
+    text-align: center;
+    width: 80%;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 100%;
+        text-align: center;
+    }
+}
