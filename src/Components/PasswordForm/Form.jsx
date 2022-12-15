@@ -7,6 +7,7 @@ import { useEffect } from "react";
 import axios from "axios";
 import { endpoints } from "../../Constants";
 import styles from "./form.module.css";
+import { URL } from './../../Constants/index.js';
 
 const PasswordForm = () => {
     const [email, setEmail] = useState("");
