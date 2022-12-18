@@ -53,7 +53,7 @@ const PasswordForm = () => {
         setLoading(true);
         var response
         try {
-            response = await axios.post(URL + endpoints.auth.forgotPassword, { email, });
+            response = verified ? await axios.post(URL + endpoints.auth.forgotPassword, { email, }) : { data : {success: false, error: "please check reCaptcha button" }}
         } catch {
             showErrorMessage(response && response.data.error ? response.data.error : "Something Went Wrong")
         } finally {

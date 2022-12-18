@@ -30,7 +30,7 @@ const Login = () => {
             password,
         };
         setLoading(true);
-        const response = await login(data);
+        const response = verified ? await login(data) : { status: false, error: "please check reCaptcha button" }
         setLoading(false);
         if (response.status === false) {
             setVerified(process.env.REACT_APP_IS_DEV ? true : false);
