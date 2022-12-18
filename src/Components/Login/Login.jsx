@@ -15,7 +15,7 @@ const Login = () => {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [verified, setVerified] = useState(false);
+    const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
 
     const navigate = useNavigate();
 
@@ -33,7 +33,7 @@ const Login = () => {
         const response = await login(data);
         setLoading(false);
         if (response.status === false) {
-            setVerified(false);
+            setVerified(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
             setTimeout(() => {
                 toast.error(response.error, {
                     position: "top-center",
@@ -48,11 +48,12 @@ const Login = () => {
             }, 2);
             return
         };
-
-        toast.success("Login Successfully", {
-            autoClose: 5000,
-            onClose: () => { if (response.data.tokens) return navigate("/"); }
-        });
+        setTimeout(() => {
+            toast.success("Login Successfully", {
+                autoClose: 3000,
+                onClose: () => { if (response.data.tokens) return navigate("/"); }
+            });
+        }, 2);
 
     };
 
@@ -78,12 +79,15 @@ const Login = () => {
                     changeHandler={setPassword}
                 />
                 {error ? <Error message={error} /> : null}
-                <div className="container">
-                    <ReCAPTCHA
-                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                        onChange={handleCaptcha}
-                    />
-                </div>
+                {
+                    process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? "" :
+                        <div className="container">
+                            <ReCAPTCHA
+                                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                                onChange={handleCaptcha}
+                            />
+                        </div>
+                }
                 <SubmitButton type="submit" text="Login" disabled={!verified} />
             </Form>
             <ToastContainer />
