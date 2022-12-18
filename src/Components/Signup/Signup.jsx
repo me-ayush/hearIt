@@ -19,7 +19,7 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
+    const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV ? true : false);
 
     const navigate = useNavigate();
 
@@ -36,9 +36,9 @@ const Signup = () => {
             password,
         };
         setLoading(true);
-        const response = await signup(data);
+        const response = verified ? await signup(data) : { status: false, error: "please check reCaptcha button" }
         setLoading(false);
-        setVerified(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
+        setVerified(process.env.REACT_APP_IS_DEV ? true : false);
         if (!response.status) {
             setTimeout(() => {
                 toast.error(response.error, {
@@ -104,7 +104,7 @@ const Signup = () => {
                 />
                 {error ? window.location.reload() : null}
                 {
-                    process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? "" :
+                    process.env.REACT_APP_IS_DEV ? "" :
                         <div className="container">
                             <ReCAPTCHA
                                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}

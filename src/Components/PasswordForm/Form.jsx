@@ -13,7 +13,7 @@ import { Preloader } from "../PreLoader/preloader";
 
 const PasswordForm = () => {
     const [email, setEmail] = useState("");
-    const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
+    const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV ? true : false);
     const [message, setMessage] = useState("");
     const [loading, setLoading] = useState(false);
 
@@ -21,38 +21,48 @@ const PasswordForm = () => {
         setVerified(true);
     };
 
+    function showErrorMessage(message) {
+        setVerified(process.env.REACT_APP_IS_DEV ? true : false)
+        toast.error(message, {
+            position: "top-center",
+            autoClose: 5000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: true,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+    }
+    function showSuccessMessage(message) {
+        toast.success("Recovery Mail Sent", {
+            position: "top-right",
+            autoClose: 2000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: true,
+            progress: undefined,
+            theme: "colored",
+        });
+        setMessage("Recovery mail sent, please check your mailbox, also check the spam tab");
+    }
+
     const sendEmail = async (e) => {
         e.preventDefault();
         setLoading(true);
-        const response = await axios.post(URL + endpoints.auth.forgotPassword, {
-            email,
-        });
-        setLoading(false);
+        var response
+        try {
+            response = verified ? await axios.post(URL + endpoints.auth.forgotPassword, { email, }) : { data : {success: false, error: "please check reCaptcha button" }}
+        } catch {
+            showErrorMessage(response && response.data.error ? response.data.error : "Something Went Wrong")
+        } finally {
+            setLoading(false);
+        }
         if (response.data.success) {
-            toast.success("Recovery Mail Sent", {
-                position: "top-right",
-                autoClose: 2000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: false,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
-            setMessage("Recovery mail sent, please check your mailbox, also check the spam tab");
-        } else {
-            setVerified(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false)
-            // setMessage(response.data.error);
-            toast.error(response.data.error, {
-                position: "top-center",
-                autoClose: 5000,
-                hideProgressBar: false,
-                closeOnClick: true,
-                pauseOnHover: true,
-                draggable: true,
-                progress: undefined,
-                theme: "colored",
-            });
+            showSuccessMessage()
+        }else{
+            showErrorMessage(response.data.error)
         }
     };
 
@@ -78,7 +88,7 @@ const PasswordForm = () => {
                 />
                 <div className="container">
                     {
-                        process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true :
+                        process.env.REACT_APP_IS_DEV ? true :
                             <ReCAPTCHA
                                 sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
                                 onChange={handleCaptcha}
