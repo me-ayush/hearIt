@@ -19,7 +19,7 @@ const Signup = () => {
     const [confirmPassword, setConfirmPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState("");
-    const [verified, setVerified] = useState(false);
+    const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
 
     const navigate = useNavigate();
 
@@ -38,7 +38,7 @@ const Signup = () => {
         setLoading(true);
         const response = await signup(data);
         setLoading(false);
-        setVerified(false);
+        setVerified(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
         if (!response.status) {
             setTimeout(() => {
                 toast.error(response.error, {
@@ -103,12 +103,15 @@ const Signup = () => {
                     changeHandler={setConfirmPassword}
                 />
                 {error ? window.location.reload() : null}
-                <div className="container">
-                    <ReCAPTCHA
-                        sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
-                        onChange={handleCaptcha}
-                    />
-                </div>
+                {
+                    process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? "" :
+                        <div className="container">
+                            <ReCAPTCHA
+                                sitekey={process.env.REACT_APP_RECAPTCHA_SITE_KEY}
+                                onChange={handleCaptcha}
+                            />
+                        </div>
+                }
                 <SubmitButton
                     type="submit"
                     text="Signup"
