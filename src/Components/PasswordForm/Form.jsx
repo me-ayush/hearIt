@@ -9,11 +9,13 @@ import { endpoints } from "../../Constants";
 import styles from "./form.module.css";
 import { URL } from './../../Constants/index.js';
 import { ToastContainer, toast } from "react-toastify";
+import { Preloader } from "../PreLoader/preloader";
 
 const PasswordForm = () => {
     const [email, setEmail] = useState("");
     const [verified, setVerified] = useState(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false);
     const [message, setMessage] = useState("");
+    const [loading, setLoading] = useState(false);
 
     const handleCaptcha = () => {
         setVerified(true);
@@ -21,9 +23,11 @@ const PasswordForm = () => {
 
     const sendEmail = async (e) => {
         e.preventDefault();
+        setLoading(true);
         const response = await axios.post(URL + endpoints.auth.forgotPassword, {
             email,
         });
+        setLoading(false);
         if (response.data.success) {
             toast.success("Recovery Mail Sent", {
                 position: "top-right",
@@ -35,7 +39,7 @@ const PasswordForm = () => {
                 progress: undefined,
                 theme: "colored",
             });
-            setMessage(response.data.message);
+            setMessage("Recovery mail sent, please check your mailbox, also check the spam tab");
         } else {
             setVerified(process.env.REACT_APP_IS_DEV && process.env.REACT_APP_IS_DEV ? true : false)
             // setMessage(response.data.error);
@@ -51,6 +55,8 @@ const PasswordForm = () => {
             });
         }
     };
+
+    if (loading) return <Preloader />;
 
     return message.length > 0 ? (
         <>
