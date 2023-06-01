@@ -7,6 +7,7 @@ import PrivateRoute from "./Utils/PrivateRoute";
 import ForgotPassword from "./Pages/AuthPages/ForgotPassword";
 import Landing from "./Pages/LandingPage/Landing";
 import AuthenticateUser from "./Pages/AuthPages/AuthenticateUser";
+import { Upload } from "./Pages/FileUpload/Upload";
 
 const Router = () => {
     return (
@@ -16,6 +17,7 @@ const Router = () => {
                 <Route path="/home" element={<Home />} />
             </Route>
             <Route path="/login" element={<Login />} />
+            <Route path="/upload" element={<Upload />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/forgot-password" element={<ForgotPassword />} />
             <Route path="/auth/verify/:token" element={<AuthenticateUser />}/>
